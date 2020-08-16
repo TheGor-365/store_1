@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyStore</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="authentication">
+        <% if user_signed_in? %>
+          <%= current_user.inspect %> | <%= link_to 'Sign out', destroy_user_session_patn %>
+        <% else %>
+          <%= link_to 'Sign in', new_user_session_path %> | <%= link_to 'Registration', new_user_registration_path %>
+        <% end %>
+      </div>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <p style='color: red;'><%= flash[:error] %></p>
+      <p style='color: green;'><%= flash[:success] %></p>
+      <%= yield %>
+    </div>
+
+
+  </body>
+</html>

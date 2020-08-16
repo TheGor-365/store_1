@@ -1,0 +1,14 @@
+<h1>Items</h1>
+
+<% @items.each do |item| %>
+
+  Name: <%= link_to item.name, item_path(item) %>
+
+  | Rating: <%= item.votes_count %>, <%= link_to '+', upvote_item_path(item) %> |
+
+  <%= link_to 'Delete', item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  <%= link_to item.image, item_path(item) %>
+  <%= image_tag item.image.file, width: '50px', height: '50px' if item.image %>
+  <br>
+<% end %>
